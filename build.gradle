@@ -1,6 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url  "http://palantir.bintray.com/releases" }
+    }
+
+    dependencies {
+        classpath 'com.palantir.baseline:gradle-baseline-java:0.13.0'
     }
 }
 
@@ -8,9 +13,18 @@ plugins {
     id 'org.unbroken-dome.test-sets' version '1.4.0'
 }
 
+allprojects {
+    group 'com.palantir.repro'
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'org.unbroken-dome.test-sets'
+    apply plugin: 'com.palantir.baseline-eclipse'
+
+    repositories {
+      mavenCentral()
+    }
 
     sourceCompatibility = '1.8'
 }
