@@ -1,0 +1,18 @@
+machine:
+  environment:
+    TERM: dumb
+  java:
+    version: oraclejdk8
+
+dependencies:
+  override:
+    - ./gradlew :my-project:dependencies
+
+general:
+  artifacts:
+    - build/reports
+    - my-project/build/reports
+
+test:
+  override:
+    - ./gradlew build integTest --info --stacktrace
